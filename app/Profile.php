@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     protected $guarded = array('id');
-    //課題5　ProfileのModelを作成し、Validationする
+    //ProfileのModelを作成し、Validationする
     public static $rules =array(
         'name' => 'required',
         'gender' => 'required',
