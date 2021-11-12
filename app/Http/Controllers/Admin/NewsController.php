@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 //以下を追記し、News Modelを使えるようにする
 use App\News;
+use App\History;
+
+use Carbon\Carbon;
+
 
 class NewsController extends Controller
 {
@@ -87,7 +92,17 @@ class NewsController extends Controller
       unset($news_form['_token']);
       // 該当するデータを上書きして保存する
       $news->fill($news_form)->save();
-      return redirect('admin/news');
+      
+      //History Modelに編集履歴を送る
+      Log::debug("新しい編集履歴を作成します。");
+      $history = new History();
+      Log::debug("IDを編集履歴に保存します。プロフィールID：" . $request->id );
+      $history->news_id = $news->id;
+      $history->edited_at = Carbon::now();
+      Log::debug("編集履歴を保存します。プロフィールID：" . $request->id );
+      $history->save();
+      
+      return redirect('admin/news/');
     }
     
     //データ削除を実装する

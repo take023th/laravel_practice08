@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Log;
 
 //以下Profile Modelを使用できるようにする
 use App\Profile;
+use App\Profilehistories;
+
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -71,6 +74,12 @@ class ProfileController extends Controller
       unset($profiles_form['_token']);
       // 該当するデータを上書きして保存する
       $profiles->fill($profiles_form)->save();
-      return redirect('admin/profile');
+      
+      $history = new History();
+      $history->profile_id = $profiles->id;
+      $history->edited_at = Carbon::now();
+      $history->save();
+      
+      return redirect('admin/profile/');
     }
 }
