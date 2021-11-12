@@ -8,4 +8,7 @@ return [
     'Register' => 'ユーザー登録',
     'Name' => 'ユーザー名',
     'Confirm Password' => 'パスワードの確認',
+    'men' => '男性' ,
+    'women' => '女性'
+    
 ];
