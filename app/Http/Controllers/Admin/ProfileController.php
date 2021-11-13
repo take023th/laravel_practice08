@@ -34,7 +34,7 @@ class ProfileController extends Controller
       $profiles->fill($form);
       $profiles->save();
       
-      return redirect('admin.profile.create');
+      return redirect('admin/profile/create');
     }
     
     public function index(Request $request)
