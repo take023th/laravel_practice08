@@ -32,7 +32,8 @@
                         <thead>
                             <tr>
                                 <th width="10%">ID</th>
-                                <th width="20%">氏名</th>
+                                <th width="15%">氏名</th>
+                                <th width="10%">性別</th>
                                 <th width="50%">自己紹介欄</th>
                             </tr>
                         </thead>
@@ -41,6 +42,13 @@
                                 <tr>
                                     <th>{{ $profiles->id }}</th>
                                     <td>{{ \Str::limit($profiles->name, 100) }}</td>
+                                    <td>
+                                        @if ($profiles->gender == "man"|| $profiles->gender == "男性")
+                                        <label>男性</label>
+                                        @else
+                                        <label>女性</label>
+                                        @endif
+                                    </td>
                                     <td>{{ \Str::limit($profiles->introduction, 250) }}</td>
                                     <td>
                                         <div>

@@ -17,7 +17,7 @@ class ProfileController extends Controller
     //
     public function add()
     {
-        return view('admin.profile.create');
+        return view('admin/profile/create');
     }
     
     public function create(Request $request)
@@ -75,10 +75,10 @@ class ProfileController extends Controller
       // 該当するデータを上書きして保存する
       $profiles->fill($profiles_form)->save();
       
-      $history = new History();
-      $history->profile_id = $profiles->id;
-      $history->edited_at = Carbon::now();
-      $history->save();
+      $histories = new Profilehistories();
+      $histories->profile_id = $profiles->id;
+      $histories->edited_at = Carbon::now();
+      $histories->save();
       
       return redirect('admin/profile/');
     }

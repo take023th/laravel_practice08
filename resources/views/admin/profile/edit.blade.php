@@ -1,6 +1,6 @@
 @extends('layouts.profile')
 
-@section('title','ProfileEdit')
+@section('title','プロフィール編集ページ')
 
 @section('content')
     <div class="container">
@@ -24,15 +24,21 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">性別</label>
-                        <label class="col-md-2">
-                            <input type="radio" name="gender" value="男性">男性
-                        </label>
-                        <label class="col-md-2">
-                            <input type="radio" name="gender" value="女性">女性
-                        </label>
-                        <label class="col-md-5">
-                            <p><?php echo $profiles_form->name; ?>の性別は<span style="color:red"><?php echo $profiles_form->gender; ?></span>が選択されています。</p>
-                        </label>
+                            @if ($profiles_form->gender == "man" || $profiles_form->gender == "男性")
+                                <label class="col-md-2">
+                                    <input type="radio" name="gender" value="man" checked>男性
+                                </label>
+                                <label class="col-md-2">
+                                    <input type="radio" name="gender" value="women" >女性
+                                </label>
+                            @else
+                                <label class="col-md-2">
+                                    <input type="radio" name="gender" value="man" >男性
+                                </label>
+                                <label class="col-md-2">
+                                    <input type="radio" name="gender" value="women" checked>女性
+                                </label>
+                            @endif
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">趣味</label>
@@ -60,8 +66,8 @@
                         <h2>更新履歴</h2>
                         <ul class="list-group">
                             @if ($profiles_form->histories !=Null)
-                                @foreach ($profiles_form->histories as $history)
-                                    <li class="list-group-item">{{ $history->edited_at }}</li>
+                                @foreach ($profiles_form->histories as $histories)
+                                    <li class="list-group-item">{{ $histories->edited_at }}</li>
                                 @endforeach
                             @endif
                         </ul>
