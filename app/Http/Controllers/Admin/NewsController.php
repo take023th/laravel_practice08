@@ -36,8 +36,8 @@ class NewsController extends Controller
       }
       //フォームから送信されてきた_tokenを削除する
       unset($form['_token']);
-      //フォームから送信されてきたimegeを削除する
-      unset($form['imege']);
+      //フォームから送信されてきたimageを削除する
+      unset($form['image']);
       //データベースに保存する
       $news->fill($form);
       $news->save();
@@ -78,9 +78,11 @@ class NewsController extends Controller
       $news = News::find($request->id);
       // 送信されてきたフォームデータを格納する
       $news_form = $request->all();
+      
       if ($request->remove == 'true') {
           $news_form['image_path'] = null;
       } elseif ($request->file('image')) {
+          Log::info("イメージファイルを保存する。");
           $path = $request->file('image')->store('public/image');
           $news_form['image_path'] = basename($path);
       } else {
