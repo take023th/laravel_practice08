@@ -7,6 +7,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>わたしの編集ページ</h2>
+                <h3>プロフィールエディットページ</h3>
                 <form action="{{action('Admin\ProfileController@update') }}" method="post" enctype="multinpart/form-data">
                     
                     @if (count($errors) > 0)
