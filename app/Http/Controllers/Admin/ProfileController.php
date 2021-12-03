@@ -34,7 +34,7 @@ class ProfileController extends Controller
       $profiles->fill($form);
       $profiles->save();
       
-      return redirect('admin/profile/create');
+      return redirect('admin/profile/');
     }
     
     public function index(Request $request)
@@ -81,5 +81,14 @@ class ProfileController extends Controller
       $histories->save();
       
       return redirect('admin/profile/');
+    }
+    
+    public function delete(Request $request)
+    {
+        //該当するNews Modelを取得する
+        $profiles = Profile::find($request->id);
+        //削除する
+        $profiles->delete();
+        return redirect('admin/profile/');
     }
 }
