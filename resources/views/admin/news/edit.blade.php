@@ -29,7 +29,6 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="image">画像</label>
-                
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
                             <div class="form-text text-info">

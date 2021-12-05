@@ -53,7 +53,7 @@ class NewsController extends Controller
         $cond_title = $request->cond_title;
         if($cond_title != '') {
             //検索されたら検索結果を取得
-            $posts = News::where('title', $cond_title)->get();
+            $posts = News::where('title', 'like' , "%{$cond_title}%")->get();
         } else {
             //条件以外はすべてのニュースを取得
             $posts = News::all();
@@ -81,7 +81,9 @@ class NewsController extends Controller
       // 送信されてきたフォームデータを格納する
       $news_form = $request->all();
       
+      Log::info("request->file確認" . $request->file );
       if ($request->remove == 'true') {
+          Log::info("イメージを削除する" );
           $news_form['image_path'] = null;
       } elseif ($request->file('image')) {
           Log::info("イメージファイルを保存する。");
