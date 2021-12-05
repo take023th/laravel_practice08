@@ -52,7 +52,7 @@ class NewsController extends Controller
     {
         $cond_title = $request->cond_title;
         if($cond_title != '') {
-            //検索されたら検索結果を取得
+            //検索されたら検索結果を取得->部分一致を実装
             $posts = News::where('title', 'like' , "%{$cond_title}%")->get();
         } else {
             //条件以外はすべてのニュースを取得

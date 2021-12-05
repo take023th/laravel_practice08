@@ -41,6 +41,7 @@ class ProfileController extends Controller
     {
         $cond_name = $request->cond_name;
         if($cond_name !='') {
+            //部分一致を実装
             $posts = Profile::where('name', 'like' , "%{$cond_name}%")->get();
         } else {
             $posts = Profile::all();
